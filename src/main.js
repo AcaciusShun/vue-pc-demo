@@ -3,9 +3,6 @@
 import Vue from 'vue'
 import router from './router'
 import Layout from './components/layout'
-// import './../static/style/reset.css';
-
-Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({

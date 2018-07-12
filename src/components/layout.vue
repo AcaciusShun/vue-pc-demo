@@ -7,7 +7,7 @@
               </router-link>
               <div class="head-nav">
                   <ul class="nav-list">
-                      <li>{{ username }}</li>
+                      <!-- <li>{{ username }}</li> -->
                       <li>登录</li>
                       <li class="nav-pile">|</li>
                       <li>注册</li>
@@ -19,7 +19,12 @@
               </div>
           </div>
       </div>
-      <div class="app-content">content</div>
+      <div class="app-content">
+          <keep-view>
+              <router-view></router-view>
+          </keep-view>
+
+      </div>
       <div class="app-foot">
         <p>@ 2016 fishenal MIT</p>
       </div>
@@ -186,4 +191,3 @@ body {
   padding-left: 15px;
 }
 </style>
-
