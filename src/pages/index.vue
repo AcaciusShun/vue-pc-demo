@@ -3,30 +3,39 @@
     <div class="index-left">
       <div class="index-left-block">
         <h2>全部产品</h2>
-          <h3>PC产品</h3>
+        <template v-for="index in productList">
+          <!-- 循环template内的内容 -->
+          <h3>{{ index.title }}</h3>
           <ul>
-            <li>
-              <a></a>
+            <li v-for="item in index.list">
+              <a :href="item.url">{{ item.name }}</a>
+              <span v-if="item.hot" class="hot-tag">HOT</span>
             </li>
           </ul>
-          <div class="hr"></div>
-          <h3>应用类</h3>
-            <ul>
-              <li>
-                <a></a>
-              </li>
-            </ul>
+          <div v-if="!index.last" class="hr"></div>
+        </template>
       </div>
       <div class="index-left-block lastest-news">
         <h2>最新消息</h2>
         <ul>
-          <li></li>
+          <li v-for="item in newsList">
+            <a :href="item.title">{{ item.name }}</a>
+          </li>
         </ul>
       </div>
     </div>
     <div class="index-right">
       <slide-show :slides="slides"></slide-show>
       <div class="index-board-list">
+        <div class="index-board-item" v-for="(item,index) in boardList" :class="[{ 'line-last' : index % 2 !== 0 },'index-board-' + item.id]">
+          <div class="index-board-item-inner">
+            <h2>{{item.title}}</h2>
+            <p>{{item.description}}</p>
+            <div class="index-board-button">
+              <a href="" class="button">立即购买</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -37,6 +46,55 @@ export default {
   name: 'index',
   data () {
     return {
+      boardList: [
+        {
+          title: '开放产品',
+          description: '开放产品是一款开放产品',
+          id: 'car',
+          toKey: 'analysis',
+          saleout: false
+        },
+        {
+          title: '品牌营销',
+          description: '品牌营销帮助你的产品更好地找到定位',
+          id: 'earth',
+          toKey: 'count',
+          saleout: false
+        },
+        {
+          title: '使命必达',
+          description: '使命必达快速迭代永远保持最前端的速度',
+          id: 'loud',
+          toKey: 'forecast',
+          saleout: true
+        },
+        {
+          title: '勇攀高峰',
+          description: '帮你勇闯高峰，到达事业的顶峰',
+          id: 'hill',
+          toKey: 'publish',
+          saleout: false
+        }
+      ],
+      newsList: [
+        {
+          name: '数据统计',
+          url: 'http://starcraft.com'
+        },
+        {
+          name: '数据预测',
+          url: 'http://warcraft.com'
+        },
+        {
+          name: '流量分析',
+          url: 'http://overwatch.com',
+          hot: true
+        },
+        {
+          name: '广告发布',
+          url: 'http://hearstone.com'
+        }
+      ],
       productList: {
         pc: {
           'title': 'PC产品',
@@ -62,6 +120,7 @@ export default {
         },
         app: {
           'title': 'App应用',
+          last: true,
           list: [
             {
               name: '91助手',
@@ -144,16 +203,16 @@ export default {
   min-height: 125px;
   padding-left: 120px;
 }
-.index-board-car .index-board-item-inner{
+.index-board-car .index-board-item-inner {
   background: url(../assets/images/1.png) no-repeat;
 }
-.index-board-loud .index-board-item-inner{
+.index-board-loud .index-board-item-inner {
   background: url(../assets/images/2.png) no-repeat;
 }
-.index-board-earth .index-board-item-inner{
+.index-board-earth .index-board-item-inner {
   background: url(../assets/images/3.png) no-repeat;
 }
-.index-board-hill .index-board-item-inner{
+.index-board-hill .index-board-item-inner {
   background: url(../assets/images/4.png) no-repeat;
 }
 .index-board-item h2 {
