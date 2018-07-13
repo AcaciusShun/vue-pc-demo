@@ -18,8 +18,8 @@
       <div class="index-left-block lastest-news">
         <h2>最新消息</h2>
         <ul>
-          <li v-for="item in newsList">
-            <a :href="item.title">{{ item.name }}</a>
+          <li v-for="index in newsList">
+            <a :href="index.url" class="new-item">{{ index.title }}</a>
           </li>
         </ul>
       </div>
@@ -43,14 +43,15 @@
 
 <script>
 export default {
-  created: function () {
-    this.$http.post('getList')
-    .then(function (data) {
-      console.log(data)
-
-    },function (err) {
-
-    })
+  created () {
+  this.$http.get('/api/getNewsList0')
+      .then((res) => {
+        this.newsList = res.data
+        // console.log(this.newsList[0].title)
+      },
+      (err) => {
+        console.log(err)
+      })
   },
   name: 'index',
   data () {
@@ -83,25 +84,6 @@ export default {
           id: 'hill',
           toKey: 'publish',
           saleout: false
-        }
-      ],
-      newsList: [
-        {
-          name: '数据统计',
-          url: 'http://starcraft.com'
-        },
-        {
-          name: '数据预测',
-          url: 'http://warcraft.com'
-        },
-        {
-          name: '流量分析',
-          url: 'http://overwatch.com',
-          hot: true
-        },
-        {
-          name: '广告发布',
-          url: 'http://hearstone.com'
         }
       ],
       productList: {
