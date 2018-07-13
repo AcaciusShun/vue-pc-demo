@@ -43,6 +43,14 @@
 
 <script>
 export default {
+  created: function () {
+    this.$http.post('getList')
+    .then(function (data) {
+      console.log(data)
+    },function (err) {
+
+    })
+  },
   name: 'index',
   data () {
     return {
