@@ -47,6 +47,7 @@ export default {
     this.$http.post('getList')
     .then(function (data) {
       console.log(data)
+
     },function (err) {
 
     })
