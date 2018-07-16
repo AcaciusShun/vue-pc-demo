@@ -3,6 +3,11 @@
 import Vue from 'vue'
 import router from './router'
 import Layout from './components/layout'
+// import axios from "axios";
+import VueSource from 'vue-resource'
+Vue.use(VueSource)
+
+// Vue.prototype.$ajax = axios
 
 /* eslint-disable no-new */
 new Vue({

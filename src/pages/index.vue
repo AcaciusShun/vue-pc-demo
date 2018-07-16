@@ -18,8 +18,8 @@
       <div class="index-left-block lastest-news">
         <h2>最新消息</h2>
         <ul>
-          <li v-for="index in newsList">
-            <a :href="index.url" class="new-item">{{ index.title }}</a>
+          <li v-for="item in newsList">
+            <a :href="item.url" class="new-item">{{ item.title }}</a>
           </li>
         </ul>
       </div>
@@ -42,20 +42,49 @@
 </template>
 
 <script>
+  import slideShow from '../components/slideShow.vue'
+
 export default {
-  created () {
-  this.$http.get('/api/getNewsList0')
-      .then((res) => {
-        this.newsList = res.data
-        // console.log(this.newsList[0].title)
-      },
-      (err) => {
-        console.log(err)
-      })
+  components: {
+    slideShow
   },
-  name: 'index',
+  created: function () {
+    var that = this
+    this.$http.get('/api/getNewsList0')
+    .then(
+       (res) => {
+        console.log(res)
+        that.newsList = res.data
+      }, (err) => {
+        console.log(err)
+      }
+    )
+  },
   data () {
     return {
+      invTime: 2000,
+      slides: [
+        {
+          src: require('../assets/slideShow/pic1.jpg'),
+          title: 'xxx1',
+          href: 'detail/analysis'
+        },
+        {
+          src: require('../assets/slideShow/pic2.jpg'),
+          title: 'xxx2',
+          href: 'detail/count'
+        },
+        {
+          src: require('../assets/slideShow/pic3.jpg'),
+          title: 'xxx3',
+          href: 'http://xxx.xxx.com'
+        },
+        {
+          src: require('../assets/slideShow/pic4.jpg'),
+          title: 'xxx4',
+          href: 'detail/forecast'
+        }
+      ],
       boardList: [
         {
           title: '开放产品',
@@ -86,6 +115,26 @@ export default {
           saleout: false
         }
       ],
+      newsList:[],
+      // newsList: [
+      //   {
+      //     name: '数据统计',
+      //     url: 'http://starcraft.com'
+      //   },
+      //   {
+      //     name: '数据预测',
+      //     url: 'http://warcraft.com'
+      //   },
+      //   {
+      //     name: '流量分析',
+      //     url: 'http://overwatch.com',
+      //     hot: true
+      //   },
+      //   {
+      //     name: '广告发布',
+      //     url: 'http://hearstone.com'
+      //   }
+      // ],
       productList: {
         pc: {
           'title': 'PC产品',

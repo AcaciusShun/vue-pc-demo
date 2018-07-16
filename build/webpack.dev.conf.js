@@ -10,7 +10,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
-// 新版配置
+// // // 新版配置
 var express = require('express')
 var apiServer = express()
 var bodyParser = require('body-parser')
@@ -43,7 +43,7 @@ apiServer.listen(3000, function (err) {
 })
 
 /*-------------旧版---jsonServer---------*/
-/*引入json-server*/
+// /*引入json-server*/
 // const jsonServer = require('json-server')
 // /*搭建一个server*/
 // const apiServer = jsonServer.create()
@@ -51,14 +51,11 @@ apiServer.listen(3000, function (err) {
 // const apiRouter = jsonServer.router('db.json')
 // const middlewares = jsonServer.defaults()
 // apiServer.use(middlewares)
-// apiServer.use(apiRouter)
+// apiServer.use('/api',apiRouter)
 // /*监听端口*/
 // apiServer.listen(3000, () => {
 //   console.log('JSON Server is running')
 // })
-
-
-
 
 
 const HOST = process.env.HOST
